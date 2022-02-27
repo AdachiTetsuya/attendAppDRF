@@ -15,8 +15,9 @@ from django.db.models import OuterRef, Q, Subquery
 from rest_framework.generics import RetrieveAPIView
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-
-from myapp import serializers
+import pytz
+from django.utils.timezone import make_aware
+from django.utils import formats
 
 User = get_user_model()
 
@@ -30,13 +31,18 @@ class LineLogin(SocialLoginView):
     callback_url = 'http://localhost:3000/callback/'
     authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
-class HomeViewSet(viewsets.ModelViewSet):
+
+class UserDetailAPIView(RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    lookup_field = 'pk'
+
+
 
 class AttendViewSet(viewsets.ModelViewSet):
     queryset = SubmitAttendance.objects.all()
     serializer_class = SubmitSerializer
+
 
 # 出席履歴の保存
 class SubmitAPI(APIView):
@@ -64,12 +70,12 @@ class UserListView(APIView):
                 latest_attend_time=Subquery(latest_attend.values("time")[:1]),
             ).order_by("-latest_attend_pk")
 
-
             res_list = [
                 {
+                    'id':i.id,
                     'username':i.username,
                     'is_attend':i.is_attend,
-                    'time':json.dumps(i.latest_attend_time, cls=DjangoJSONEncoder),
+                    'time':formats.date_format(i.latest_attend_time,"(H:i~)"),
 
                 }
                 for i in items
@@ -78,4 +84,7 @@ class UserListView(APIView):
         except:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             
+
+# class DetailView(APIView):
+#     def get(self,request):
 
