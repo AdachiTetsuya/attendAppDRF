@@ -70,7 +70,7 @@ class UserListView(APIView):
                 'id':user.id,
                 'username':user.username,
                 'is_attend':user.is_attend,
-                'time':formats.date_format(user.latest_attend_time,"(H:i~)"),
+                'time':formats.date_format(user.latest_attend_time,"(H:i)"),
 
             }
             for user in users if user.latest_attend_time
