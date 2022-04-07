@@ -2,7 +2,7 @@ from .settings_common import *
 
 DEBUG = True
 
-ALLOWED_HOST = ['*']
+ALLOWED_HOSTS = ['35.72.215.229']
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
