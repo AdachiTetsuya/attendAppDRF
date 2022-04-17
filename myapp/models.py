@@ -1,7 +1,14 @@
 from django.db import models
-from accounts.models import CustomUser
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+class CustomUser(AbstractUser):
+
+    class Meta:
+        verbose_name_plural = 'CustomUser'
+
+    # 出席中か
+    is_attend = models.BooleanField(default=False,help_text='出席中ならTrue')
 
 
 class SubmitAttendance(models.Model):

@@ -1,7 +1,6 @@
 from dataclasses import field, fields
 from rest_framework import serializers
-from accounts.models import CustomUser
-from .models import SubmitAttendance
+from .models import SubmitAttendance,CustomUser
 from allauth.socialaccount.models import SocialAccount
 from rest_framework.serializers import SerializerMethodField
 from datetime import date,timedelta

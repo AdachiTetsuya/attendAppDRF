@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.line',
 
-    'accounts.apps.AccountsConfig',
     'myapp.apps.MyappConfig',
 
     'corsheaders', 
@@ -54,7 +53,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 #カスタムユーザを指定
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'myapp.CustomUser'
 
 
 REST_FRAMEWORK = {

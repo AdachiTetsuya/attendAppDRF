@@ -7,11 +7,10 @@ from rest_framework import viewsets,mixins
 from django.contrib.auth import get_user_model
 from .serializers import *
 from rest_framework.response import Response
-from .models import SubmitAttendance
+from .models import SubmitAttendance,CustomUser
 from rest_framework.views import APIView
 from django.db.models import OuterRef,Subquery
 from rest_framework.generics import RetrieveAPIView
-from django.core.serializers.json import DjangoJSONEncoder
 from django.utils import formats
 from django.conf import settings
 

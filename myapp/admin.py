@@ -1,6 +1,6 @@
 from re import S
 from django.contrib import admin
-from .models import SubmitAttendance
+from .models import SubmitAttendance,CustomUser
 # Register your models here.
 
 class RatingAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class RatingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SubmitAttendance,RatingAdmin)
+admin.site.register(CustomUser)
